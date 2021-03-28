@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template_modifications>
+  <modification type="public" template="member_notable" modification_key="ap_member_bars" description="Add bar chart to the Notable Members page" execution_order="10" enabled="1" action="str_replace">
+    <find><![CDATA[					<xf:foreach loop="$results" key="$userId" value="$data">
+						<li>
+							<xf:macro name="overview_row" arg-data="{$data}" />
+						</li>
+					</xf:foreach>]]></find>
+    <replace><![CDATA[					<xf:include template="ap_member_bars" />]]></replace>
+  </modification>
+
+  <modification type="public" template="member_notable" modification_key="ap_member_bars_extended" description="Adds bars to the Notable Members' extended view." execution_order="10" enabled="1" action="str_replace">
+    <find><![CDATA[				<ol class="block-body">
+					<xf:foreach loop="{$resultsData.{$active.member_stat_key}}" key="$userId" value="$data">
+						<li class="block-row block-row--separated">]]></find>
+    <replace><![CDATA[				<ol class="block-body">
+					<xf:set var="$max_num" value="1" />
+					<xf:foreach loop="{$resultsData.{$active.member_stat_key}}" key="$userId" value="$data">
+						<xf:if is="$max_num < floor($data.value|replace(',','' ))">
+							<xf:set var="$max_num" value="{$data.value|replace(',','' )}" />
+						</xf:if>
+							
+						<li class="block-row block-row--separated" style="display:block;position:relative;z-index:1;">
+							<xf:set var="$percentage" value="{{ ((floor($data.value|replace(',','' )) * 100) / $max_num) }}" />
+							<div style="width:{{$percentage}}%;height:100%;position:absolute;left:0;top:0;background:{{ property('ap_bar_color') }};z-index:-1;"></div>]]></replace>
+  </modification>
+</template_modifications>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+  <template type="public" title="ap_member_bars" version_id="1010000" version_string="1.1"><![CDATA[<xf:set var="$max_num" value="1" />
+<xf:foreach loop="$results" key="$userId" value="$data">
+	<xf:if is="$max_num < floor($data.value|replace(',','' ))">
+		<xf:set var="$max_num" value="{$data.value|replace(',','' )}" />
+	</xf:if>
+	<li>
+		<xf:set var="$percentage" value="{{ ((floor($data.value|replace(',','' )) * 100) / $max_num) }}" />
+		<div class="contentRow contentRow--alignMiddle" style="height:40px">
+			<div class="contentRow-figure">
+				<xf:avatar user="$data.user" size="xs" />
+			</div>
+
+			<div class="contentRow-main" style="display:inline-block;position:relative;">
+				<div style="margin-top:-5px !important;width:{{$percentage}}%;height:40px;position:absolute;background:{{ property('ap_bar_color') }};z-index:0;"></div>
+				<xf:if is="$data.value">
+					<div class="contentRow-extra contentRow-extra--large" style="position:relative;z-index:1;">{$data.value}</div>
+				</xf:if>
+				<h3 class="contentRow-title" style="position:relative;padding-left:4px;padding-top:5px;z-index:1;"><xf:username user="$data.user" rich="true" /></h3> 
+			</div>
+		</div>
+	</li>
+</xf:foreach>]]></template>
+</templates>
