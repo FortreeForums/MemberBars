@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <templates>
-  <template type="public" title="ap_member_bars" version_id="1010000" version_string="1.1"><![CDATA[<xf:set var="$max_num" value="1" />
+  <template type="public" title="ap_member_bars" version_id="1020000" version_string="1.2.0"><![CDATA[<xf:set var="$max_num" value="1" />
 <xf:foreach loop="$results" key="$userId" value="$data">
 	<xf:if is="$max_num < floor($data.value|replace(',','' ))">
 		<xf:set var="$max_num" value="{$data.value|replace(',','' )}" />
@@ -17,7 +17,7 @@
 				<xf:if is="$data.value">
 					<div class="contentRow-extra contentRow-extra--large" style="position:relative;z-index:1;">{$data.value}</div>
 				</xf:if>
-				<h3 class="contentRow-title" style="position:relative;padding-left:4px;padding-top:5px;z-index:1;"><xf:username user="$data.user" rich="true" /></h3> 
+				<h3 class="contentRow-title" style="position:relative;padding-left:4px;padding-top:1px;z-index:1;"><xf:username user="$data.user" rich="true" /></h3> 
 			</div>
 		</div>
 	</li>

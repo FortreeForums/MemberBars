@@ -8,7 +8,6 @@
 					</xf:foreach>]]></find>
     <replace><![CDATA[					<xf:include template="ap_member_bars" />]]></replace>
   </modification>
-
   <modification type="public" template="member_notable" modification_key="ap_member_bars_extended" description="Adds bars to the Notable Members' extended view." execution_order="10" enabled="1" action="str_replace">
     <find><![CDATA[				<ol class="block-body">
 					<xf:foreach loop="{$resultsData.{$active.member_stat_key}}" key="$userId" value="$data">
